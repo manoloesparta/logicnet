@@ -1,1 +1,3 @@
-from neuralnetwork import NeuralNetwork as NN
+from neuralnetwork import NeuralNetwork
+from data import DataGenerator
+
