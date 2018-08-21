@@ -46,8 +46,3 @@ class NeuralNetwork:
 	@staticmethod
 	def sigmoid(x):
 		return 1 / (1 + np.exp(-x))
-
-if __name__ == '__main__':
-	ann = NeuralNetwork(2,30,1,0.2)
-	ann.train([[0,0],[1,1]],[0,1],1000)
-	print(ann.predict([0,0]))

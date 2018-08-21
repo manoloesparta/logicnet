@@ -19,9 +19,3 @@ class DataGenerator:
 			elif i[2] == 1:
 				self.target_data.append([i[0] or i[1]])
 		return np.array(self.target_data)
-
-if __name__ == '__main__':
-
-	dg = DataGenerator(10)
-	print(dg.generate_train_data())
-	print(dg.generate_target_data())
