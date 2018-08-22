@@ -9,8 +9,8 @@ class NeuralNetwork:
 
 		self.learning_rate = learning_rate
 
-		self.weights_input_hidden = np.random.randn(self.hidden_nodes, self.input_nodes) - 0.5
-		self.weights_hidden_output = np.random.randn(self.output_nodes, self.hidden_nodes) - 0.5
+		self.weights_input_hidden = 2 * np.random.randn(self.hidden_nodes, self.input_nodes) - 1
+		self.weights_hidden_output = 2 * np.random.randn(self.output_nodes, self.hidden_nodes) - 1
 
 	def train(self, train_data, target_data, epochs):
 		inputs = np.array(train_data, ndmin=2).T
@@ -44,5 +44,13 @@ class NeuralNetwork:
 		return final_outputs
 
 	@staticmethod
-	def sigmoid(x):
+	def sigmoid(x, d=False):
+		if d == True:
+			return NeuralNetwork.sigmoid(x) * (1 - NeuralNetwork.sigmoid(x))
 		return 1 / (1 + np.exp(-x))
+
+if __name__ == '__main__':
+
+	ann = NeuralNetwork(2, 100000, 1, 0.1)
+	ann.train([[0,1],[1,0],[0,0],[1,1]], [0,0,0,1], 10000)
+	print(ann.predict([[1,0]]))
