@@ -18,5 +18,5 @@ class DataGenerator:
 			elif i[2] == 1:
 				self.target_data.append([i[0] or i[1]])
 
-		return { 'train_data': np.array(self.train_data), 'target_data' : np.array(self.target_data) } 
-
+		return { 'train_data': np.array(self.train_data), 
+				 'target_data' : np.array(self.target_data) } 
