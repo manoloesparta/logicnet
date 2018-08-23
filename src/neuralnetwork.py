@@ -42,6 +42,7 @@ class NeuralNetwork:
             if (i % (epochs / 10)) == 0:
                 print("Error: {0:.4f}".format(np.mean(np.abs(layer3_error))))
 
+        self.save_weights()
         return 'trained'
 
     def predict(self, input_data):
@@ -52,15 +53,30 @@ class NeuralNetwork:
         layer3_output = NeuralNetwork.sigmoid(np.dot(layer2_output, self.weights_layer2_output))
 
         return layer3_output
-        
+
+    def save_weights(self):
+    	np.savetxt('./weights/weights_saved_il1', self.weights_inputs_layer1)
+    	np.savetxt('./weights/weights_saved_l1l2', self.weights_layer1_layer2)
+    	np.savetxt('./weights/weights_saved_l2o', self.weights_layer2_output)
+
+    	return 'weights saved'
+    
+    @staticmethod
+    def load_weights(learning_rate):
+
+    	wil1 = np.loadtxt('./weights/weights_saved_il1')
+    	wl1l2 = np.loadtxt('./weights/weights_saved_l1l2')
+    	wl2o = np.loadtxt('./weights/weights_saved_l2o',ndmin=2)
+
+    	inputs_nodes = wil1.shape[0]
+    	hidden_layer1 = wl1l2.shape[0]
+    	hidden_layer2 = wl1l2.shape[1]
+    	output_nodes = wl2o.shape[1]
+
+    	return NeuralNetwork(inputs_nodes, hidden_layer1, hidden_layer2, output_nodes, learning_rate)
 
     @staticmethod
     def sigmoid(x, deriv=False):
         if deriv == True:
             return x * (1 - x)
         return 1 / (1 + np.exp(-x))
-
-if __name__ == '__main__':
-    ann = NeuralNetwork(2,10,10,1,0.5)
-    ann.train([[0,1],[1,0],[0,0],[1,1]],[[0],[0],[0],[1]],1000)
-    print(ann.predict([[1,1]]))
