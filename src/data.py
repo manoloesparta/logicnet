@@ -10,13 +10,10 @@ class DataGenerator:
 	def generate_data(self):
 
 		for i in range(self.num):
-			self.train_data.append([np.random.choice(2), np.random.choice(2), np.random.choice(2)])
+			self.train_data.append([np.random.choice(2), np.random.choice(2)])
 
 		for i in self.train_data:
-			if i[2] == 0:
-				self.target_data.append([i[0] and i[1]])
-			elif i[2] == 1:
-				self.target_data.append([i[0] or i[1]])
+			self.target_data.append([i[0] or i[1]])
 
-		return { 'train_data': np.array(self.train_data), 
-				 'target_data' : np.array(self.target_data) } 
+		return { 'train_data': self.train_data, 
+				 'target_data' : self.target_data }

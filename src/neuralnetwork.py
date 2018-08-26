@@ -52,6 +52,7 @@ class NeuralNetwork:
         layer2_output = NeuralNetwork.sigmoid(np.dot(layer1_output, self.weights_layer1_layer2))
         layer3_output = NeuralNetwork.sigmoid(np.dot(layer2_output, self.weights_layer2_output))
 
+        print(layer3_output)
         return layer3_output
 
     def save_weights(self):
@@ -73,7 +74,13 @@ class NeuralNetwork:
     	hidden_layer2 = wl1l2.shape[1]
     	output_nodes = wl2o.shape[1]
 
-    	return NeuralNetwork(inputs_nodes, hidden_layer1, hidden_layer2, output_nodes, learning_rate)
+    	nn = NeuralNetwork(inputs_nodes, hidden_layer1, hidden_layer2, output_nodes, learning_rate)
+
+    	nn.weights_inputs_layer1 = wil1
+    	nn.weights_layer1_layer2 = wl1l2
+    	nn.weights_layer2_output = wl2o
+
+    	return nn
 
     @staticmethod
     def sigmoid(x, deriv=False):
