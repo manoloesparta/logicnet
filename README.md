@@ -24,7 +24,7 @@ ann = NeuralNetwork(input_nodes, hidden_layer1_nodes, hidden_layer2_nodes, outpu
 ```
 
 #### Creating the data for the neural network
-NOTE: *The only data it creates is about logical gates using the functions AND or OR. If you want to use your own data, you need to your normalize data and feed it to the network*
+*NOTE: The only data it creates is about logical gates using the functions AND or OR. If you want to use your own data, you need to your normalize data and feed it to the network*
 ```python
 from data import DataGenerator
 
@@ -39,7 +39,7 @@ y = data['target_data']
 ```python
 epochs = 1000
 
-ann.train(x,y, epochs)
+ann.train(x, y, epochs)
 ```
 
 #### Predicting
@@ -47,4 +47,21 @@ ann.train(x,y, epochs)
 unknown_answer = [[0,1]]
 
 ann.predict(unknown_answer)
+```
+
+## Saving and loading weights
+
+#### Saving Weights
+When a full training is complete automatically weights are saved in:
+```
+./src/weights/
+```
+
+#### Loading Weights
+You can use this method without and instance of the class, and create the full neural network so you can start predicting
+```python
+from neuralnetwork import NeuralNetwork
+
+ann = NeuralNetwork.load_weights()
+ann.predict([[0,1]])
 ```
