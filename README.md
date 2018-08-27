@@ -1,10 +1,11 @@
 # Logic Neural Network
 
-This is a 2 hidden layer neural network made with love :)
+This is a 2 hidden layer neural network made with love :)  
 This was original made for learning logical gates but you can use with any normalized data.
 
 ## Requirements
 ```
+git clone https://github.com/manoloesparta/logicnet
 pip install -r requirements.txt
 ```
 
@@ -65,3 +66,6 @@ from neuralnetwork import NeuralNetwork
 ann = NeuralNetwork.load_weights()
 ann.predict([[0,1]])
 ```
+
+## License
+This project is licensed under the MIT License
