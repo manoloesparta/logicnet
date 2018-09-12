@@ -31,7 +31,7 @@ from data import DataGenerator
 
 num_samples = 100
 
-data =  DataGenerator(num_samples).generate_data()
+data =  DataGenerator(num_samples).logic_data()
 x = data['train_data']
 y = data['target_data']
 ```

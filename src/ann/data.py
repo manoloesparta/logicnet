@@ -7,7 +7,7 @@ class DataGenerator:
 		self.train_data = []
 		self.target_data = []
 
-	def generate_data(self):
+	def logic_data(self):
 
 		for i in range(self.num):
 			self.train_data.append([np.random.choice(2), np.random.choice(2)])
@@ -17,3 +17,6 @@ class DataGenerator:
 
 		return { 'train_data': self.train_data, 
 				 'target_data' : self.target_data }
+
+		def double_data(self):
+			pass

@@ -1,9 +1,9 @@
-from neuralnetwork import NeuralNetwork
-from data import DataGenerator
+from ann.neuralnetwork import NeuralNetwork
+from ann.data import DataGenerator
 
 ann = NeuralNetwork(2, 100, 100, 1, 0.1)
 
-data = DataGenerator(10).generate_data()
+data = DataGenerator(10).logic_data()
 
 train_data = data['train_data']
 target_data = data['target_data']
