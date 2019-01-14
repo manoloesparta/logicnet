@@ -67,5 +67,15 @@ ann = NeuralNetwork.load_weights()
 ann.predict([[0,1]])
 ```
 
+## Dokcer
+In order to build your docker image use the command
+```
+docker build -t ann .
+```
+Finally in order to run your container use
+```
+docker run --rm -v $(pwd):/usr/src/ -it ann bash
+```
+
 ## License
 This project is licensed under the MIT License

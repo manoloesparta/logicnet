@@ -56,9 +56,9 @@ class NeuralNetwork:
         return layer3_output
 
     def save_weights(self):
-    	np.savetxt('./weights/weights_saved_il1', self.weights_inputs_layer1)
-    	np.savetxt('./weights/weightsl_saved_l1l2', self.weights_layer1_layer2)
-    	np.savetxt('./weights/weights_saved_l2o', self.weights_layer2_output)
+    	np.savetxt('weights/weights_saved_il1', self.weights_inputs_layer1)
+    	np.savetxt('weights/weights_saved_l1l2', self.weights_layer1_layer2)
+    	np.savetxt('weights/weights_saved_l2o', self.weights_layer2_output)
 
     	return 'weights saved'
     
