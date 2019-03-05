@@ -18,4 +18,3 @@ if __name__ == '__main__':
 
 	ann = NeuralNetwork(1,10,10,1,0.3)
 	n = Normalizer(np.array([0,1]))
-	n.normalize()
