@@ -17,6 +17,3 @@ class DataGenerator:
 
 		return { 'train_data': self.train_data, 
 				 'target_data' : self.target_data }
-
-		def double_data(self):
-			pass

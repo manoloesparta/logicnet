@@ -15,9 +15,6 @@ class NeuralNetwork:
         self.weights_layer2_output = 2 * np.random.random((self.hidden_layer2,self.output_nodes)) - 1 
 
     def train(self, input_list, output_list, epochs):
-        inputs = np.array(input_list)
-        outputs = np.array(output_list)
-
         for i in range(epochs):
             inputs = np.array(input_list)
             outputs = np.array(output_list)
@@ -29,7 +26,7 @@ class NeuralNetwork:
             layer3_error = outputs - layer3_output
             layer3_delta = self.learning_rate * (layer3_error * NeuralNetwork.sigmoid(layer3_output, deriv=True))
 
-            layer2_error = np.dot(layer3_delta, self.weights_layer2_output.T) 
+            layer2_error = np.dot(layer3_delta, self.weights_layer2_output.T)
             layer2_delta = self.learning_rate * (layer2_error * NeuralNetwork.sigmoid(layer2_output, deriv=True))
 
             layer1_error = np.dot(layer2_delta, self.weights_layer1_layer2.T)
@@ -42,7 +39,6 @@ class NeuralNetwork:
             if (i % (epochs / 10)) == 0:
                 print("Error: {0:.4f}".format(np.mean(np.abs(layer3_error))))
 
-        self.save_weights()
         return 'trained'
 
     def predict(self, input_data):
@@ -54,33 +50,6 @@ class NeuralNetwork:
 
         print(layer3_output)
         return layer3_output
-
-    def save_weights(self):
-    	np.savetxt('weights/weights_saved_il1', self.weights_inputs_layer1)
-    	np.savetxt('weights/weights_saved_l1l2', self.weights_layer1_layer2)
-    	np.savetxt('weights/weights_saved_l2o', self.weights_layer2_output)
-
-    	return 'weights saved'
-    
-    @staticmethod
-    def load_weights(learning_rate):
-
-    	wil1 = np.loadtxt('./weights/weights_saved_il1')
-    	wl1l2 = np.loadtxt('./weights/weights_saved_l1l2')
-    	wl2o = np.loadtxt('./weights/weights_saved_l2o',ndmin=2)
-
-    	inputs_nodes = wil1.shape[0]
-    	hidden_layer1 = wl1l2.shape[0]
-    	hidden_layer2 = wl1l2.shape[1]
-    	output_nodes = wl2o.shape[1]
-
-    	nn = NeuralNetwork(inputs_nodes, hidden_layer1, hidden_layer2, output_nodes, learning_rate)
-
-    	nn.weights_inputs_layer1 = wil1
-    	nn.weights_layer1_layer2 = wl1l2
-    	nn.weights_layer2_output = wl2o
-
-    	return nn
 
     @staticmethod
     def sigmoid(x, deriv=False):
