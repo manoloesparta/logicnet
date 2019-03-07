@@ -37,7 +37,7 @@ class NeuralNetwork:
             self.weights_inputs_layer1 += inputs.T.dot(layer1_delta)
 
             if (i % (epochs / 10)) == 0:
-                print("Error: {0:.4f}".format(np.mean(np.abs(layer3_error))))
+                print("Error: {:.8f}".format(np.mean(np.abs(layer3_error))))
 
         return 'trained'
 
@@ -54,5 +54,5 @@ class NeuralNetwork:
     @staticmethod
     def sigmoid(x, deriv=False):
         if deriv == True:
-            return x * (1 - x)
+            return NeuralNetwork.sigmoid(x) * (1 - NeuralNetwork.sigmoid(x))
         return 1 / (1 + np.exp(-x))

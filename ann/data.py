@@ -1,4 +1,4 @@
-import numpy as np
+from random import choice
 
 class DataGenerator:
 
@@ -8,12 +8,11 @@ class DataGenerator:
 		self.target_data = []
 
 	def logic_data(self):
+		options = [0, 1]
+		self.train_data = [[choice(options), choice(options)] for _ in range(self.num)]
+		self.target_data = [[i[0] or i[1]] for i in self.train_data]
 
-		for i in range(self.num):
-			self.train_data.append([np.random.choice(2), np.random.choice(2)])
-
-		for i in self.train_data:
-			self.target_data.append([i[0] or i[1]])
-
-		return { 'train_data': self.train_data, 
-				 'target_data' : self.target_data }
+		return {
+			'train_data': self.train_data,
+			'target_data' : self.target_data
+		}
