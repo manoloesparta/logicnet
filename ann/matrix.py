@@ -17,13 +17,15 @@ class Matrix:
         return ']\n'.join(raw)
 
     def __add__(self, addition):
-        cols, rows = self.shape
-        result = Matrix(cols, rows, zeros=True)
+        result = self.apply(lambda x: x + addition)
+        return result
 
-        for i in range(cols):
-          for j in range(rows):
-            result.matrix[i][j] = self.matrix[i][j] + addition
+    def __sub__(self, subtraction):
+        result = self.apply(lambda x: x - subtraction)
+        return result
 
+    def __mul__(self, coef):
+        result = self.apply(lambda x : x * coef)
         return result
 
     def mat_add(self, addition):
@@ -38,15 +40,6 @@ class Matrix:
 
         return result
 
-    def __sub__(self, subtraction):
-        cols, rows = self.shape
-        result = Matrix(cols, rows, zeros=True)
-
-        for i in range(cols):
-            for j in range(rows):
-                result.matrix[i][j] = self.matrix[i][j] - subtraction
-
-        return result
 
     def mat_sub(self, subtraction):
         cols, rows = self.shape
@@ -60,15 +53,6 @@ class Matrix:
 
         return result
 
-    def __mul__(self, coef):
-        cols, rows = self.shape
-        result = Matrix(cols, rows, zeros=True)
-
-        for i in range(cols):
-            for j in range(rows):
-                result.matrix[i][j] = self.matrix[i][j] * coef
-
-        return result
 
 
     def mat_mul(self, matrix1, matrix2):
